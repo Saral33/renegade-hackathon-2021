@@ -1,0 +1,10 @@
+.weather__card {
+  width: 250px;
+  padding: 50px;
+  text-align: center;
+  background-color: #eee;
+}
+
+.icons {
+  height: 100px;
+}

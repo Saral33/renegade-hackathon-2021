@@ -1,38 +1,63 @@
-.App {
-  text-align: center;
+nav {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  background-color: brown;
+  color: #fff;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.links {
+  cursor: pointer;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.login {
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  align-items: center;
+  margin-top: 20px;
+}
+a {
+  text-decoration: none;
+}
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+.login_btn {
+  margin-top: 20px;
+}
+
+.container {
+  display: flex;
+
+  flex-wrap: wrap;
+  padding: 100px 200px;
+  gap: 30px;
+}
+label {
+  margin-top: 10px;
+}
+a,
+a:visited,
+a:hover,
+a:active {
+  color: inherit;
+}
+
+.weather__btn {
+  cursor: pointer;
+  background: none;
+  border: 2px solid;
+  font: inherit;
+  line-height: 1;
+  margin: 0.5em;
+  padding: 1em 2em;
+  transition: all 0.4s;
+}
+
+.weather__btn:hover {
+  background-color: black;
   color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }
