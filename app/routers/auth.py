@@ -14,11 +14,10 @@ router = APIRouter(
     '/login', response_model=schemas.Token
     )
 def login_user(data: schemas.Login_data,   db: Session = Depends(database.get_db)):
-    print(data)
     user = db.query(models.User).filter(models.User.email == data.email).first()
     if not user:
         raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail=f'Invalid Credentials')
-    print(utils.check_password(data.password, user.password))
+      
     if utils.check_password(data.password, user.password):
         raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail=f'Invalid Credentials')
     token = oauth2.create_access_token(data= {'user_id':user.id})

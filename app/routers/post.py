@@ -84,3 +84,4 @@ def update_post(id: int, up_post:schemas.Post_create,db: Session = Depends(get_d
     updated_post.update(up_post.dict(), synchronize_session=False)
     db.commit()
     return updated_post.first() 
+

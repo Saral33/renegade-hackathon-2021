@@ -45,5 +45,6 @@ class Token(BaseModel):
 class Token_data(BaseModel):
     id: Optional[str] 
     
-
+class Answer(BaseModel):
+    answer: bool
     
