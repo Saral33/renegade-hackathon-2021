@@ -12,7 +12,11 @@ const LoginScreen = () => {
     e.preventDefault();
     try {
       const res = await axios.post(`${api}/auth/login`, { email, password });
-    } catch (error) {}
+
+      localStorage.setItem('token', res.data.access_token);
+    } catch (error) {
+      console.log(error);
+    }
   };
   return (
     <div>

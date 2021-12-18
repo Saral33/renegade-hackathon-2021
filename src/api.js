@@ -1,1 +1,1 @@
-export const api = 'http://6fc0-202-79-35-20.ngrok.io';
+export const api = 'http://7382-202-79-35-20.ngrok.io';
