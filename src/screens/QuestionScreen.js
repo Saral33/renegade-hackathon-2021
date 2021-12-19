@@ -10,7 +10,16 @@ const QuestionScreen = () => {
   const [loading, setLoading] = useState(false);
   const [answer, setAnswer] = useState();
   const [result, setResult] = useState('');
-  console.log(question);
+
+  const sendEmail = async (ans) => {
+    const token = localStorage.getItem('token');
+    let config = {
+      headers: {
+        Authorization: 'Bearer ' + token,
+      },
+    };
+    await axios.post(`${api}/send-email/`, { body: ans }, config);
+  };
 
   const fetchQuestion = async () => {
     const token = localStorage.getItem('token');
@@ -39,9 +48,11 @@ const QuestionScreen = () => {
     };
     await axios.post(`${api}/storeans/${question.id}`, { answer }, config);
     if (answer === true && isNaN(question.yes)) {
+      sendEmail(`You are at ${question.yes} risk`);
       return setResult(question.yes);
     }
     if (answer === false && isNaN(question.no)) {
+      sendEmail(`You are at ${question.no} risk`);
       return setResult(question.no);
     }
 
@@ -67,7 +78,11 @@ const QuestionScreen = () => {
             </>
           )}
 
-          {result && <p>You are at {result} Risk</p>}
+          {result && (
+            <p style={{ textAlign: 'center', marginTop: '40px' }}>
+              You are at {result} Risk
+            </p>
+          )}
         </>
       )}
     </div>

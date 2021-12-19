@@ -34,7 +34,10 @@ const LoginScreen = () => {
           <label>Email</label>
           <input onChange={(e) => setEmail(e.target.value)} />
           <label>Password</label>
-          <input onChange={(e) => setPassword(e.target.value)} />
+          <input
+            type="password"
+            onChange={(e) => setPassword(e.target.value)}
+          />
           <button type="submit" className="login_btn">
             Login
           </button>
