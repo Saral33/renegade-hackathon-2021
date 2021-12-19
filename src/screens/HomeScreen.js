@@ -79,19 +79,19 @@ const HomeScreen = () => {
     const res1 = await axios.get(
       `https://api.openweathermap.org/data/2.5/weather?q=${
         lists[Math.floor(Math.random() * lists.length)]
-      }&appid=${process.env.API_KEY}`
+      }&appid=8f366d853427d4ac7e53364ff5bfb620`
     );
     arr.push(res1.data);
     const res2 = await axios.get(
       `https://api.openweathermap.org/data/2.5/weather?q=${
         lists[Math.floor(Math.random() * lists.length)]
-      }&appid=${process.env.API_KEY}`
+      }&appid=8f366d853427d4ac7e53364ff5bfb620`
     );
     arr.push(res2.data);
     const res3 = await axios.get(
       `https://api.openweathermap.org/data/2.5/weather?q=${
         lists[Math.floor(Math.random() * lists.length)]
-      }&appid=${process.env.API_KEY}`
+      }&appid=8f366d853427d4ac7e53364ff5bfb620`
     );
     arr.push(res3.data);
 
@@ -124,6 +124,12 @@ const HomeScreen = () => {
             className="weather__btn"
           >
             Flood Risk Assessment
+          </button>
+          <button
+            onClick={() => history('/your-weather')}
+            className="weather__btn"
+          >
+            Want to know your weather?
           </button>
         </div>
       </div>

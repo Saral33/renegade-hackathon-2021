@@ -7,8 +7,29 @@ import NavBar from '../components/NavBar';
 const QuestionScreen = () => {
   const [number, setNumber] = useState(1);
   const [question, setQuestion] = useState({});
+  const [loading, setLoading] = useState(false);
+  const [answer, setAnswer] = useState();
+  const [result, setResult] = useState('');
+  console.log(question);
 
   const fetchQuestion = async () => {
+    const token = localStorage.getItem('token');
+    setLoading(true);
+    let config = {
+      headers: {
+        Authorization: 'Bearer ' + token,
+      },
+    };
+    const res = await axios.get(`${api}/getq/${number}`, config);
+
+    setQuestion(res.data);
+    setLoading(false);
+  };
+  useEffect(() => {
+    fetchQuestion();
+  }, [number]);
+
+  const submitHandler = async () => {
     const token = localStorage.getItem('token');
 
     let config = {
@@ -16,17 +37,39 @@ const QuestionScreen = () => {
         Authorization: 'Bearer ' + token,
       },
     };
-    const res = await axios.get(`${api}/getq/${number}`, config);
-    setQuestion(res.data);
-    console.log(res.data);
+    await axios.post(`${api}/storeans/${question.id}`, { answer }, config);
+    if (answer === true && isNaN(question.yes)) {
+      return setResult(question.yes);
+    }
+    if (answer === false && isNaN(question.no)) {
+      return setResult(question.no);
+    }
+
+    setNumber(answer === true ? Number(question.yes) : Number(question.no));
   };
-  useEffect(() => {
-    fetchQuestion();
-  }, [number]);
+  console.log(number);
   return (
     <div>
       <NavBar />
-      <p>Q: {question.question} </p>
+      {loading ? (
+        <p>Loading.....</p>
+      ) : (
+        <>
+          {!result && (
+            <>
+              <p>Step {number}</p>
+              <p>Q: {question.question} </p>
+              <label>Yes</label>
+              <input onChange={() => setAnswer(true)} name="r1" type="radio" />
+              <label>No</label>
+              <input onChange={() => setAnswer(false)} name="r1" type="radio" />
+              <button onClick={submitHandler}>Submit</button>
+            </>
+          )}
+
+          {result && <p>You are at {result} Risk</p>}
+        </>
+      )}
     </div>
   );
 };

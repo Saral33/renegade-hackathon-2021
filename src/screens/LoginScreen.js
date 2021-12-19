@@ -1,21 +1,23 @@
 import React, { useState } from 'react';
 import NavBar from '../components/NavBar';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { api } from '../api';
 
 const LoginScreen = () => {
+  const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
+  const [error, setError] = useState('');
   const submitHandler = async (e) => {
     e.preventDefault();
     try {
       const res = await axios.post(`${api}/auth/login`, { email, password });
 
       localStorage.setItem('token', res.data.access_token);
+      navigate('/');
     } catch (error) {
-      console.log(error);
+      setError('Invalid Credentails');
     }
   };
   return (
@@ -23,6 +25,11 @@ const LoginScreen = () => {
       <NavBar />
       <div className="login">
         <h1>Login</h1>
+        {error && (
+          <p style={{ background: 'red', color: '#fff', padding: '10px 30px' }}>
+            {error}
+          </p>
+        )}
         <form onSubmit={submitHandler}>
           <label>Email</label>
           <input onChange={(e) => setEmail(e.target.value)} />

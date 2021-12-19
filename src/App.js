@@ -4,6 +4,7 @@ import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import LoginScreen from './screens/LoginScreen';
 import RegisterScreen from './screens/RegisterScreen';
 import QuestionScreen from './screens/QuestionScreen';
+import WeatherScreen from './screens/WeatherScreen';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Route path="/login" element={<LoginScreen />} />
           <Route path="/register" element={<RegisterScreen />} />
           <Route path="/questions" element={<QuestionScreen />} />
+          <Route path="/your-weather" element={<WeatherScreen />} />
         </Routes>
       </Router>
     </div>

@@ -6,6 +6,7 @@ import { ReactComponent as Rain } from '../icons/rain.svg';
 import { ReactComponent as Haze } from '../icons/haze.svg';
 import { ReactComponent as Thunder } from '../icons/thunderstorm.svg';
 import { ReactComponent as Wind } from '../icons/wind.svg';
+import { ReactComponent as Mist } from '../icons/mist.svg';
 
 const WeatherCard = ({ data }) => {
   console.log(data);
@@ -27,7 +28,7 @@ const WeatherCard = ({ data }) => {
           ) : data.weather[0].main === 'thunder' ? (
             <Thunder className="icons" />
           ) : data.weather[0].main === 'Mist' ? (
-            <Wind className="icons" />
+            <Mist className="icons" />
           ) : (
             <Haze className="icons" />
           )}
