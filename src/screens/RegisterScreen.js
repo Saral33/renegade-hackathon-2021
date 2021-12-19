@@ -1,11 +1,12 @@
 import React from 'react';
 import NavBar from '../components/NavBar';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react/cjs/react.development';
 import axios from 'axios';
 import { api } from '../api';
 
 const RegisterScreen = () => {
+  const navigate = useNavigate();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [age, setAge] = useState('');
@@ -27,6 +28,7 @@ const RegisterScreen = () => {
       password,
       email,
     });
+    navigate('/login');
   };
   return (
     <div>
